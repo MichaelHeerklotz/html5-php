@@ -28,6 +28,22 @@ class Html5Test extends TestCase
         return $out;
     }
 
+
+    public function testImageTagsInSvg()
+    {
+        $html = "<!DOCTYPE html>
+        <html>
+            <body>
+                <svg>
+                    <image />
+                </svg>
+                <image></image>
+            </body>
+        </html>";
+        $doc = $this->html5->loadHTML($html);
+        $this->assertXmlStringEqualsXmlString($html, $this->html5->saveHTML($doc));
+    }
+
     public function testLoadOptions()
     {
         // doc
